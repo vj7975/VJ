@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080808">
+  <title>Idea Inbox | Vinay Pawar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="idea-inbox-page section-shell">
+    <header class="inbox-header">
+      <div>
+        <a class="brand" href="index.html"><span class="brand-orbit"></span><span>VINAY</span></a>
+        <h1>Idea <span class="accent-text">Inbox</span></h1>
+        <p>Private submissions, visible only to the configured owner account.</p>
+      </div>
+      <button class="inbox-signout" id="inbox-signout" type="button" hidden>Sign out</button>
+    </header>
+
+    <section class="inbox-auth-panel" id="inbox-auth-panel">
+      <h2>Owner sign in</h2>
+      <p>A secure sign-in link will be sent to the configured owner email.</p>
+      <form id="inbox-login-form">
+        <label for="inbox-owner-email">Owner email</label>
+        <input id="inbox-owner-email" type="email" autocomplete="email" required readonly>
+        <button class="idea-submit-button" id="inbox-login-button" type="submit">Send sign-in link</button>
+      </form>
+      <p class="inbox-message" id="inbox-auth-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="inbox-dashboard" id="inbox-dashboard" hidden>
+      <div class="inbox-toolbar">
+        <h2>Submissions</h2>
+        <button class="inbox-signout" id="inbox-refresh" type="button">Refresh</button>
+      </div>
+      <p class="inbox-message" id="inbox-dashboard-message" role="status" aria-live="polite"></p>
+      <section class="inbox-backup-panel" aria-labelledby="inbox-backup-heading">
+        <div class="inbox-backup-heading">
+          <div>
+            <h2 id="inbox-backup-heading">Backup &amp; Storage</h2>
+            <p>Create private ZIP snapshots of all submissions and their uploaded files.</p>
+          </div>
+          <button class="idea-submit-button inbox-backup-create" id="inbox-create-backup" type="button">Create Backup</button>
+        </div>
+        <div class="inbox-backup-progress" id="inbox-backup-progress" hidden>
+          <progress aria-label="Backup operation in progress"></progress>
+          <span id="inbox-backup-progress-message" role="status" aria-live="polite"></span>
+        </div>
+        <p class="inbox-message" id="inbox-backup-message" role="status" aria-live="polite"></p>
+        <dl class="inbox-backup-stats">
+          <div><dt>Last successful backup</dt><dd id="inbox-last-backup">Not yet backed up</dd></div>
+          <div><dt>Backup storage used</dt><dd id="inbox-backup-usage">—</dd></div>
+        </dl>
+        <div class="inbox-backup-history">
+          <h3>Backup history</h3>
+          <div class="inbox-backup-table-wrap">
+            <table>
+              <thead><tr><th>Date &amp; time</th><th>Size</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="inbox-backup-history"></tbody>
+            </table>
+          </div>
+          <p class="inbox-backup-empty" id="inbox-backup-empty">No backups yet.</p>
+        </div>
+        <div class="inbox-restore">
+          <input class="inbox-restore-file" id="inbox-restore-file" type="file" accept=".zip,application/zip">
+          <button class="inbox-signout" id="inbox-select-restore" type="button">Restore Backup</button>
+          <p class="inbox-restore-help">Choose a ZIP backup to validate and preview before restoring. Existing idea IDs will be skipped, not overwritten.</p>
+          <div class="inbox-restore-preview" id="inbox-restore-preview" hidden>
+            <h3>Restore preview</h3>
+            <p id="inbox-restore-summary"></p>
+            <p id="inbox-restore-duplicates"></p>
+            <ul class="inbox-restore-records" id="inbox-restore-records"></ul>
+            <button class="idea-submit-button" id="inbox-confirm-restore" type="button">Confirm Restore</button>
+          </div>
+        </div>
+      </section>
+      <section class="inbox-backup-panel" aria-labelledby="inbox-instagram-heading">
+        <div class="inbox-backup-heading">
+          <div>
+            <h2 id="inbox-instagram-heading">Instagram Icebreaker</h2>
+            <p>Configure and verify the suggestion for eligible visitors starting a new conversation in the Instagram mobile app.</p>
+          </div>
+          <button class="idea-submit-button inbox-backup-create" id="inbox-configure-instagram-icebreaker" type="button">Configure Icebreaker</button>
+        </div>
+        <p class="inbox-restore-help">Suggested message: “Hi Vinay, I saw your profile and would like to connect.” Existing Icebreakers are preserved. Meta does not display Icebreakers on desktop.</p>
+        <p class="inbox-message" id="inbox-instagram-icebreaker-message" role="status" aria-live="polite"></p>
+      </section>
+      <div class="inbox-panel">
+        <div class="inbox-list" id="inbox-list"></div>
+        <p class="inbox-empty" id="inbox-empty" hidden>No ideas have been submitted yet.</p>
+      </div>
+      <article class="inbox-detail" id="inbox-detail" hidden></article>
+    </section>
+  </main>
+  <script type="module" src="idea-inbox.js"></script>
+</body>
+</html>
